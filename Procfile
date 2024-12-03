@@ -1,1 +1,1 @@
-web: python app.py
+gunicorn==20.1.0
