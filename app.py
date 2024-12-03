@@ -30,7 +30,6 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# Run the app (only for local development)
 if __name__ == "__main__":
-    # Ensure the app listens on 0.0.0.0 and uses the PORT environment variable if provided
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True, host="0.0.0.0", port=10000)
+
