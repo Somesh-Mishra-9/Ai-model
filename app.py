@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify
-import pickle
+import joblib  # Import joblib for loading the compressed model
 import numpy as np
+import os  # Import os to handle the environment variables
 
 # Create a Flask application instance
 app = Flask(__name__)
 
-# Load the pickled model
-with open("model.pkl", "rb") as f:
-    model = pickle.load(f)
+# Load the compressed model using joblib
+model = joblib.load("model.pkl")  # joblib is used here to load the model
 
 # Define a route for the home page
 @app.route("/")
@@ -32,4 +32,5 @@ def predict():
 
 # Run the app (only for local development)
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Ensure the app listens on 0.0.0.0 and uses the PORT environment variable if provided
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
